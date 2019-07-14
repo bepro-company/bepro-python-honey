@@ -2,7 +2,7 @@ import asyncio
 from functools import partial
 from os import environ
 
-RUN_ASYNC_SEQUENTIALLY = bool(environ.get('RUN_ASYNC_SEQUENTIALLY', False))
+RUN_ASYNC_SEQUENTIALLY = str(environ.get('RUN_ASYNC_SEQUENTIALLY')).lower() == 'true'
 
 
 def handle_args(func, args):
