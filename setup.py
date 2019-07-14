@@ -1,5 +1,8 @@
 import setuptools
 
+from honey.retry import retry
+
+
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
