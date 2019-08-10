@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="bepro-python-honey",
-    version="0.0.1.2",
+    version="0.0.1.3",
     author="Bepro Company",
     author_email="dev@bepro11.com",
     description="A utility package for Bepro Company",
