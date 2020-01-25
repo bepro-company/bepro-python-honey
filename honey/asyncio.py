@@ -31,7 +31,11 @@ def run_async(func, args_list):
 
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
-    return loop.run_until_complete(_run_async(loop, func, args_list))
+
+    ret = loop.run_until_complete(_run_async(loop, func, args_list))
+    loop.close()
+
+    return ret
 
 
 async def _run_async_functions(loop, functions):
@@ -52,4 +56,8 @@ def run_async_functions(functions):
 
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
-    return loop.run_until_complete(_run_async_functions(loop, functions))
+
+    ret = loop.run_until_complete(_run_async_functions(loop, functions))
+    loop.close()
+
+    return ret
