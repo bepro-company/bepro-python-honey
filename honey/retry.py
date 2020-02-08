@@ -1,4 +1,4 @@
-def retry(func, args=None, kwargs=None, exceptions=None, max_try=None):
+def retry(func, args=None, kwargs=None, exceptions=None, max_try=None, exception_handler=None):
     args = args or []
     kwargs = kwargs or {}
     exceptions = exceptions or Exception
@@ -12,6 +12,8 @@ def retry(func, args=None, kwargs=None, exceptions=None, max_try=None):
             ret = func(*args, **kwargs)
         except exceptions as e:
             exception = e
+            if exception_handler:
+                exception_handler()
         else:
             exception = None
             break
