@@ -10,4 +10,4 @@ def yml2json(yml_text):
 
     yml_text = '\n'.join(text_lines)
     yml_text = yml_text.replace('!!opencv-matrix', '')
-    return yaml.full_load(yml_text)
+    return yaml.load(yml_text, yaml.FullLoader)
