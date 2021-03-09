@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="bepro-python-honey",
-    version="0.0.1.6",
+    version="0.0.1.7",
     author="Bepro Company",
     author_email="dev@bepro11.com",
     description="A utility package for Bepro Company",
@@ -16,5 +16,7 @@ setuptools.setup(
     classifiers=[
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
     ],
 )
