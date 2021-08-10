@@ -38,21 +38,33 @@ def run_async(func, args_list):
     return ret
 
 
+def separate_func_args(data):
+    if isinstance(data, (list, tuple)):
+        func, *args = data
+    else:
+        func = data
+        args = []
+
+    return func, args
+
+
 async def _run_async_functions(loop, functions):
-    futures = [
-        loop.run_in_executor(
-            None,
-            data[0],
-            *data[1:]
-        ) for data in functions
-    ]
+    futures = []
+    for data in functions:
+        func, args = separate_func_args(data)
+        futures.append(loop.run_in_executor(None, func, *args))
 
     return await asyncio.gather(*futures)
 
 
 def run_async_functions(functions):
     if RUN_ASYNC_SEQUENTIALLY:
-        return [data[0](*data[1:]) for data in functions]
+        results = []
+        for data in functions:
+            func, args = separate_func_args(data)
+            results.append(func(*args))
+
+        return results
 
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
